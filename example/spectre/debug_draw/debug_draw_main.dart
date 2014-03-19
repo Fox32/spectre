@@ -55,7 +55,7 @@ class DebugDrawExample extends Example {
     graphicsContext.clearColorBuffer(0.97, 0.97, 0.97, 1.0);
     graphicsContext.clearDepthBuffer(1.0);
 
-    var T = new Matrix4.rotationX(_radians).scale(8.0);
+    var T = new Matrix4.rotationX(_radians)..scale(8.0);
 
     debugDrawManager.addAABB(new Vector3(1.0, 1.0, 1.0),
                              new Vector3(20.0, 20.0, 20.0),

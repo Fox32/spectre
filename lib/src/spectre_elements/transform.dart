@@ -93,6 +93,6 @@ class SpectreTransformElement extends SpectreElement {
   void updateTransform() {
     T.setIdentity();
     T.rotate(axis, angle);
-    T.translate(origin);
+    T.translate3(origin);
   }
 }

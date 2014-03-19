@@ -16,7 +16,7 @@ double _lastTime;
 bool _circleDrawn = false;
 
 Vector2 ballPosition = new Vector2(0.1, 0.1);
-Vector2 ballDirection = new Vector2(-1.0, -1.0).normalize();
+Vector2 ballDirection = new Vector2(-1.0, -1.0)..normalize();
 final double ballVelocity = 0.01;
 final double ballRadius = 0.02;
 
@@ -49,8 +49,8 @@ void _makeNormals() {
 // http://mathworld.wolfram.com/Circle-LineIntersection.html
 bool _ballIntersectsRay(Vector2 _a, Vector2 _b) {
   // Move line origin to be relative to the ball's position.
-  Vector2 a = new Vector2.copy(_a).sub(ballPosition);
-  Vector2 b = new Vector2.copy(_b).sub(ballPosition);
+  Vector2 a = new Vector2.copy(_a)..sub(ballPosition);
+  Vector2 b = new Vector2.copy(_b)..sub(ballPosition);
   Vector2 delta = b-a;
   double deltaLen = delta.length;
   double D = (a.x * b.y) - (b.x * a.y);

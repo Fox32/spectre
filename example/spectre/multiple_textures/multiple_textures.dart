@@ -55,7 +55,7 @@ class MultipleTexturesExample extends Example {
     graphicsContext.clearColorBuffer(0.97, 0.97, 0.97, 1.0);
     graphicsContext.clearDepthBuffer(1.0);
 
-    var T = new Matrix4.rotationX(_radians).scale(8.0);
+    var T = new Matrix4.rotationX(_radians)..scale(8.0);
 
     debugDrawManager.addAABB(new Vector3(1.0, 1.0, 1.0),
                              new Vector3(20.0, 20.0, 20.0),
@@ -64,14 +64,14 @@ class MultipleTexturesExample extends Example {
     debugDrawManager.addCone(new Vector3(1.0, 0.0, 0.0),
                              T.transform3(new Vector3(0.0, 0.0, 1.0)),
                              4.0,
-                             degrees2radians * 45.0,
+                             DEGREES_2_RADIANS * 45.0,
                              DebugDrawManager.ColorBlue);
 
     debugDrawManager.addArc(new Vector3(5.0, 5.0, 5.0),
                             new Vector3(0.0, 1.0, 0.0),
                             3.0,
                             _radians,
-                            _radians + (degrees2radians * 45.0),
+                            _radians + (DEGREES_2_RADIANS * 45.0),
                             DebugDrawManager.ColorGreen);
 
     debugDrawManager.addPlane(T.transform3(new Vector3(0.0, 0.0, 1.0)),
