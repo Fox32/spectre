@@ -8,13 +8,16 @@ import '../test/test_dump_render_tree.dart' as test_runner;
 
 void main(List<String> args) {
   //
-  // Analyzer
+  // Analyzer for libraries
   //
   addTask('analyze_lib', createAnalyzerTask(_getLibs));
+  //
+  // Analyzer for unit tests
+  //
   addTask('analyze_test', createAnalyzerTask(['test/test_runner.dart']));
-
-  addTask('docs', createDartDocTask(_getLibs));
-
+  //
+  // Unit test
+  //
   addTask('test', createUnitTestTask(test_runner.testCore));
 
   runHop(args);
