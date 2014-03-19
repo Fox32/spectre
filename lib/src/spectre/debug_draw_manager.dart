@@ -291,7 +291,7 @@ class DebugDrawManager {
 
     lineManager.lines._addLine(origin, to);
 
-    var center = to.clone().add(direction);
+    var center = to.clone()..add(direction);
     num s = size / Math.cos(45.0 / 2.0);
     num radius = Math.sqrt(s * s - size * size);
 
