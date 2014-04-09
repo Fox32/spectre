@@ -98,5 +98,5 @@ class Camera {
     focusPosition.copyInto(lap);
   }
 
-  Vector3 get frontDirection =>  (focusPosition-position).normalize();
+  Vector3 get frontDirection => (focusPosition - position)..normalize();
 }

@@ -286,12 +286,12 @@ class DebugDrawManager {
     var lineManager = depthEnabled ? _depthEnabledLines : _depthDisabledLines;
     lineManager.lines.startLineObject(color.r, color.g, color.b, color.a,
                                       duration);
-    var to = origin.clone().add(vector);
-    var direction = vector.normalized().scale(-size);
+    var to = origin.clone()..add(vector);
+    var direction = vector.normalized()..scale(-size);
 
     lineManager.lines._addLine(origin, to);
-    
-    var center = to.clone().add(direction);
+
+    var center = to.clone()..add(direction);
     num s = size / Math.cos(45.0 / 2.0);
     num radius = Math.sqrt(s * s - size * size);
 
@@ -439,7 +439,7 @@ class DebugDrawManager {
     lineManager.lines.startLineObject(color.r, color.g, color.b, color.a,
                                       duration);
 
-    var center = apex.clone().add(direction.normalized().scale(height));
+    var center = apex.clone()..add(direction.normalized()..scale(height));
     num s = height / Math.cos(angle / 2.0);
     num radius = Math.sqrt(s * s - height * height);
 

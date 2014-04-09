@@ -117,7 +117,7 @@ class MultipleRenderTargets extends Example {
     graphicsContext.clearDepthBuffer(1.0);
 
 
-    Matrix4 T = new Matrix4.rotationX(_radians).scale(8.0);
+    Matrix4 T = new Matrix4.rotationX(_radians)..scale(8.0);
     // Set model for rendering.
     model.set();
     // Update camera shader constants.
