@@ -93,7 +93,7 @@ class GraphicsDevice {
     if (config == null) {
       config = new GraphicsDeviceConfig();
     }
-    _gl = surface.getContext3d(stencil: config.stencilBuffer);
+    _gl = surface.getContext3d(stencil: config.stencilBuffer, alpha: config.alpha);
     _capabilities = new GraphicsDeviceCapabilities._fromContext(gl);
     hierarchicalLoggingEnabled = true;
     _spectreLog.onRecord.listen((record) {
