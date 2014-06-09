@@ -64,4 +64,7 @@ class GraphicsDeviceConfig {
   /// Whether a stencil buffer should be created.
   bool get stencilBuffer => _stencilBuffer;
   set stencilBuffer(bool value) { _stencilBuffer = value; }
+
+  /// Whether alpha should be used.
+  bool alpha = true;
 }
