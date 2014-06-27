@@ -659,6 +659,23 @@ class DebugDrawManager {
     lineManager.lines.finishLineObject();
   }
 
+  /// Add a quad primitives from vertices [vertex0], [vertex1], [vertex2],
+  /// and [vertex3]. Filled with [color].
+  ///
+  /// Optional parameters: [duration] and [depthEnabled]
+  void addQuad(Vector3 vertex0, Vector3 vertex1, Vector3 vertex2, 
+                   Vector3 vertex3, Vector4 color, {num duration: 0.0, 
+                   bool depthEnabled: true}) {
+    var lineManager = depthEnabled ? _depthEnabledLines : _depthDisabledLines;
+    lineManager.lines.startLineObject(color.r, color.g, color.b, color.a,
+                                      duration);
+    lineManager.lines._addLine(vertex0, vertex1);
+    lineManager.lines._addLine(vertex1, vertex2);
+    lineManager.lines._addLine(vertex2, vertex3);
+    lineManager.lines._addLine(vertex3, vertex0);
+    lineManager.lines.finishLineObject();
+  }
+
   /// Add an Axis Aligned Bounding Box with corners at [boxMin] and [boxMax].
   /// Filled with [color].
   ///
