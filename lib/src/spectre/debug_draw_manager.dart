@@ -664,8 +664,8 @@ class DebugDrawManager {
   ///
   /// Optional parameters: [duration] and [depthEnabled]
   void addQuad(Vector3 vertex0, Vector3 vertex1, Vector3 vertex2, 
-                   Vector3 vertex3, Vector4 color, {num duration: 0.0, 
-                   bool depthEnabled: true}) {
+  			   Vector3 vertex3, Vector4 color, {num duration: 0.0, 
+               bool depthEnabled: true}) {
     var lineManager = depthEnabled ? _depthEnabledLines : _depthDisabledLines;
     lineManager.lines.startLineObject(color.r, color.g, color.b, color.a,
                                       duration);
