@@ -10,6 +10,7 @@ dependencies:
   asset_pack:
     git: https://github.com/johnmccutchan/asset_pack.git
   logging: any
+  mock: any
   path: any
   polymer: any
   vector_math:

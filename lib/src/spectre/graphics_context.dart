@@ -50,6 +50,7 @@ class GraphicsContext {
   ShaderProgram _shaderProgram;
 
   RenderTarget _renderTarget;
+  RenderTarget _lastRenderTarget;
 
   // TODO(johnmccutchan): Fix vertex input handling.
   List<VertexBuffer> _vertexBuffers;
@@ -224,6 +225,8 @@ class GraphicsContext {
     setBlendState(_blendStateDefault);
     setDepthState(_depthStateDefault);
     setRasterizerState(_rasterizerStateDefault);
+
+    _lastRenderTarget = null;
   }
 
   /// Configure the primitive topology used when drawing.
@@ -691,9 +694,11 @@ class GraphicsContext {
     _prepareTextures();
     if (device.capabilities.hasMultipleRenderTargets) {
       if ((_renderTarget != null) &&
-          (_renderTarget != RenderTarget.systemRenderTarget)) {
+          (_renderTarget != RenderTarget.systemRenderTarget) &&
+          (_lastRenderTarget != _renderTarget)) {
         device.capabilities._multipleRenderTargets.drawBuffersWebgl(
             _renderTarget._drawBuffers);
+        _lastRenderTarget = _renderTarget;
       }
     }
   }

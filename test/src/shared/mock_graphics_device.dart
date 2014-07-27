@@ -21,7 +21,7 @@
 library mock_graphics_device;
 
 import 'dart:web_gl' as WebGL;
-import 'package:unittest/mock.dart';
+import 'package:mock/mock.dart';
 import 'package:spectre/spectre.dart';
 import 'mock_webgl_rendering_context.dart';
 

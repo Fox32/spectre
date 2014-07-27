@@ -21,7 +21,7 @@
 library mock_webgl_rendering_context;
 
 import 'dart:web_gl' as WebGL;
-import 'package:unittest/mock.dart';
+import 'package:mock/mock.dart';
 
 class MockWebGLRenderingContext extends Mock implements WebGL.RenderingContext {
   MockWebGLRenderingContext() {

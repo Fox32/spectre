@@ -21,7 +21,7 @@
 library graphics_context_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:unittest/mock.dart';
+import 'package:mock/mock.dart';
 import 'package:spectre/spectre.dart';
 import 'shared/mock_graphics_device.dart';
 import 'shared/mock_webgl_rendering_context.dart';

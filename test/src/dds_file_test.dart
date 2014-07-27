@@ -232,7 +232,7 @@ Future<Uint8List> getFile(String url) {
 
 void testStandardTexture(String url, int width, int height, int mipMapCount,
                          int resourceFormat, bool hasExtendedHeader) {
-  getFile(url).then(expectAsync1((buffer) {
+  getFile(url).then(expectAsync((buffer) {
     expect(buffer != null, true);
 
     DdsFile ddsFile = new DdsFile(buffer);
@@ -254,7 +254,7 @@ void testStandardTexture(String url, int width, int height, int mipMapCount,
 
 void testCubeMapTexture(String url, int width, int height, int mipMapCount,
                         int resourceFormat, bool hasExtendedHeader) {
-  getFile(url).then(expectAsync1((buffer) {
+  getFile(url).then(expectAsync((buffer) {
     expect(buffer != null, true);
 
     DdsFile ddsFile = new DdsFile(buffer);
@@ -273,7 +273,7 @@ void testCubeMapTexture(String url, int width, int height, int mipMapCount,
 }
 
 void testVolumeTexture(String url, int width, int height, int depth, int mipMapCount, int resourceFormat, bool hasExtendedHeader) {
-  getFile(url).then(expectAsync1((buffer) {
+  getFile(url).then(expectAsync((buffer) {
     expect(buffer != null, true);
 
     DdsFile ddsFile = new DdsFile(buffer);
@@ -363,7 +363,7 @@ void main() {
 
   // Test reading uncompressed 2D textures
   test('Read 2D R8G8B8A data', () {
-    getFile('dds/texture2d/dx9/red_256x256_UnormR8G8B8A8.dds').then(expectAsync1((buffer) {
+    getFile('dds/texture2d/dx9/red_256x256_UnormR8G8B8A8.dds').then(expectAsync((buffer) {
       expect(buffer != null, true);
 
       DdsFile ddsFile = new DdsFile(buffer);
@@ -405,7 +405,7 @@ void main() {
   });
 
   test('Read 2D B5G6R5 NPOT data', () {
-    getFile('dds/texture2d/dx9/red_31x31_UnormB5G6R5.dds').then(expectAsync1((buffer) {
+    getFile('dds/texture2d/dx9/red_31x31_UnormB5G6R5.dds').then(expectAsync((buffer) {
       expect(buffer != null, true);
 
       DdsFile ddsFile = new DdsFile(buffer);
@@ -442,7 +442,7 @@ void main() {
 
   // Test reading compressed 2D textures
   test('Read 2D UnormBc1 data', () {
-    getFile('dds/texture2d/dx9/red_256x64_UnormBc1.dds').then(expectAsync1((buffer) {
+    getFile('dds/texture2d/dx9/red_256x64_UnormBc1.dds').then(expectAsync((buffer) {
       expect(buffer != null, true);
 
       DdsFile ddsFile = new DdsFile(buffer);
@@ -476,7 +476,7 @@ void main() {
   });
 
   test('Read 2D UnormBc3 data', () {
-    getFile('dds/texture2d/dx10/red_256x64_UnormBc3.dds').then(expectAsync1((buffer) {
+    getFile('dds/texture2d/dx10/red_256x64_UnormBc3.dds').then(expectAsync((buffer) {
       expect(buffer != null, true);
 
       DdsFile ddsFile = new DdsFile(buffer);
@@ -511,7 +511,7 @@ void main() {
 
   // Test reading an uncompressed cubemap texture
   test('Read CubeMap UnormR8G8B8A8 data', () {
-    getFile('dds/cubemaps/dx9/solid_cube_256x256_UnormR8G8B8A8.dds').then(expectAsync1((buffer) {
+    getFile('dds/cubemaps/dx9/solid_cube_256x256_UnormR8G8B8A8.dds').then(expectAsync((buffer) {
       expect(buffer != null, true);
 
       DdsFile ddsFile = new DdsFile(buffer);
@@ -556,7 +556,7 @@ void main() {
 
   // Test reading compressed cubemap textures
   test('Read CubeMap UnormBc1 data', () {
-    getFile('dds/cubemaps/dx9/solid_cube_256x256_UnormBc1.dds').then(expectAsync1((buffer) {
+    getFile('dds/cubemaps/dx9/solid_cube_256x256_UnormBc1.dds').then(expectAsync((buffer) {
       expect(buffer != null, true);
 
       DdsFile ddsFile = new DdsFile(buffer);
@@ -593,7 +593,7 @@ void main() {
 
   // Test reading uncompressed volume textures
   test('Read Volume R8G8B8A8 data', () {
-    getFile('dds/texture3d/dx9/solid_volume_64x64x4_UnormR8G8B8A8.dds').then(expectAsync1((buffer) {
+    getFile('dds/texture3d/dx9/solid_volume_64x64x4_UnormR8G8B8A8.dds').then(expectAsync((buffer) {
       expect(buffer != null, true);
 
       DdsFile ddsFile = new DdsFile(buffer);
