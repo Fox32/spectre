@@ -275,7 +275,6 @@ $_linkLog''');
       return;
     }
     int numSamplers = 0;
-    var oldBind = device.gl.getParameter(WebGL.CURRENT_PROGRAM);
     device.gl.useProgram(_program);
     for (int i = 0; i < numUniforms; i++) {
       WebGL.ActiveInfo activeUniform = device.gl.getActiveUniform(_program, i);
@@ -301,7 +300,8 @@ $_linkLog''');
         uniforms[activeUniform.name] = uniform;
       }
     }
-    device.gl.useProgram(oldBind);
+    device.gl.useProgram(device.context._shaderProgram == null ? null : 
+      device.context._shaderProgram._program);
   }
 
   void refreshAttributes() {
@@ -312,7 +312,6 @@ $_linkLog''');
     if (numAttributes == null) {
       return;
     }
-    var oldBind = device.gl.getParameter(WebGL.CURRENT_PROGRAM);
     device.gl.useProgram(_program);
     for (int i = 0; i < numAttributes; i++) {
       WebGL.ActiveInfo activeAttribute = device.gl.getActiveAttrib(_program, i);
@@ -326,7 +325,8 @@ $_linkLog''');
           location);
       attributes[activeAttribute.name] = attribute;
     }
-    device.gl.useProgram(oldBind);
+    device.gl.useProgram(device.context._shaderProgram == null ? null : 
+      device.context._shaderProgram._program);
   }
 
   /** Output each uniform variable input to the log. */
@@ -524,10 +524,10 @@ $_linkLog''');
     if (uniform == null) {
       return;
     }
-    var oldBind = device.gl.getParameter(WebGL.CURRENT_PROGRAM);
     device.gl.useProgram(_program);
     updateUniform(uniform, argument);
-    device.gl.useProgram(oldBind);
+    device.gl.useProgram(device.context._shaderProgram == null ? null : 
+      device.context._shaderProgram._program);
   }
 
   void setSamplerUnit(String name, int unit) {
