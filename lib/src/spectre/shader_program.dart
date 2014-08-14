@@ -300,7 +300,7 @@ $_linkLog''');
         uniforms[activeUniform.name] = uniform;
       }
     }
-    device.gl.useProgram(device.context._shaderProgram == null ? null : 
+    device.gl.useProgram(device.context._shaderProgram == null ? null :
       device.context._shaderProgram._program);
   }
 
@@ -325,7 +325,7 @@ $_linkLog''');
           location);
       attributes[activeAttribute.name] = attribute;
     }
-    device.gl.useProgram(device.context._shaderProgram == null ? null : 
+    device.gl.useProgram(device.context._shaderProgram == null ? null :
       device.context._shaderProgram._program);
   }
 
@@ -524,10 +524,19 @@ $_linkLog''');
     if (uniform == null) {
       return;
     }
-    device.gl.useProgram(_program);
+
+    var changeProgram = device.context._shaderProgram != this;
+
+    if (changeProgram) {
+      device.gl.useProgram(_program);
+    }
+
     updateUniform(uniform, argument);
-    device.gl.useProgram(device.context._shaderProgram == null ? null : 
-      device.context._shaderProgram._program);
+
+    if (changeProgram) {
+      device.gl.useProgram(device.context._shaderProgram == null ? null :
+        device.context._shaderProgram._program);
+    }
   }
 
   void setSamplerUnit(String name, int unit) {
