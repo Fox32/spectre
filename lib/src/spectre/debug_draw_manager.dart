@@ -663,8 +663,8 @@ class DebugDrawManager {
   /// and [vertex3]. Filled with [color].
   ///
   /// Optional parameters: [duration] and [depthEnabled]
-  void addQuad(Vector3 vertex0, Vector3 vertex1, Vector3 vertex2, 
-  			   Vector3 vertex3, Vector4 color, {num duration: 0.0, 
+  void addQuad(Vector3 vertex0, Vector3 vertex1, Vector3 vertex2,
+  			   Vector3 vertex3, Vector4 color, {num duration: 0.0,
                bool depthEnabled: true}) {
     var lineManager = depthEnabled ? _depthEnabledLines : _depthDisabledLines;
     lineManager.lines.startLineObject(color.r, color.g, color.b, color.a,
@@ -673,6 +673,34 @@ class DebugDrawManager {
     lineManager.lines._addLine(vertex1, vertex2);
     lineManager.lines._addLine(vertex2, vertex3);
     lineManager.lines._addLine(vertex3, vertex0);
+    lineManager.lines.finishLineObject();
+  }
+
+  /// Add a box primitives from eight vertices. Filled with [color]. This can be
+  /// used for drawing OBBs or frustums.
+  ///
+  /// Optional parameters: [duration] and [depthEnabled]
+  void addBox(Vector3 vertex0, Vector3 vertex1, Vector3 vertex2,
+              Vector3 vertex3, Vector3 vertex4, Vector3 vertex5,
+              Vector3 vertex6, Vector3 vertex7, Vector4 color,
+              {num duration: 0.0, bool depthEnabled: true}) {
+    var lineManager = depthEnabled ? _depthEnabledLines : _depthDisabledLines;
+    lineManager.lines.startLineObject(color.r, color.g, color.b, color.a,
+                                      duration);
+    lineManager.lines._addLine(vertex0, vertex1);
+    lineManager.lines._addLine(vertex1, vertex3);
+    lineManager.lines._addLine(vertex3, vertex2);
+    lineManager.lines._addLine(vertex2, vertex0);
+
+    lineManager.lines._addLine(vertex4, vertex5);
+    lineManager.lines._addLine(vertex5, vertex7);
+    lineManager.lines._addLine(vertex7, vertex6);
+    lineManager.lines._addLine(vertex6, vertex4);
+
+    lineManager.lines._addLine(vertex4, vertex0);
+    lineManager.lines._addLine(vertex5, vertex1);
+    lineManager.lines._addLine(vertex6, vertex2);
+    lineManager.lines._addLine(vertex7, vertex3);
     lineManager.lines.finishLineObject();
   }
 
