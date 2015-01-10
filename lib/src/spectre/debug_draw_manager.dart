@@ -815,9 +815,9 @@ class DebugDrawManager extends Disposable {
 
   @override
   void finalize() {
+    _lineShaderProgram.dispose();
     _lineVertexShader.dispose();
     _lineFragmentShader.dispose();
-    _lineShaderProgram.dispose();
     _depthEnabledLines.dispose();
     _depthDisabledLines.dispose();
   }
