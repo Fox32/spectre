@@ -123,7 +123,7 @@ class _DebugLineCollection {
   }
 }
 
-class _DebugDrawLineManager {
+class _DebugDrawLineManager extends Disposable {
   static final int DebugDrawVertexSize = 7; // 3 (position) + 4 (color)
   final GraphicsDevice device;
   final _DebugLineCollection lines = new _DebugLineCollection();
@@ -187,7 +187,11 @@ class _DebugDrawLineManager {
     lines.update(dt);
   }
 
-
+  @override
+  void finalize() {
+    _lineMesh.dispose();
+    _lineMeshInputLayout.dispose();
+  }
 }
 
 /** The debug draw manager manages a collection of debug primitives that are
@@ -215,7 +219,7 @@ class _DebugDrawLineManager {
  * - Lifetime.
  *
  */
-class DebugDrawManager {
+class DebugDrawManager extends Disposable {
   static const double TWO_PI = 2.0 * Math.PI;
 
   DepthState _depthState;
@@ -807,6 +811,15 @@ class DebugDrawManager {
   void update(num seconds) {
     _depthEnabledLines.update(seconds);
     _depthDisabledLines.update(seconds);
+  }
+
+  @override
+  void finalize() {
+    _lineVertexShader.dispose();
+    _lineFragmentShader.dispose();
+    _lineShaderProgram.dispose();
+    _depthEnabledLines.dispose();
+    _depthDisabledLines.dispose();
   }
 }
 
