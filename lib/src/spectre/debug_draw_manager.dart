@@ -123,7 +123,7 @@ class _DebugLineCollection {
   }
 }
 
-class _DebugDrawLineManager {
+class _DebugDrawLineManager extends Disposable {
   static final int DebugDrawVertexSize = 7; // 3 (position) + 4 (color)
   final GraphicsDevice device;
   final _DebugLineCollection lines = new _DebugLineCollection();
@@ -187,7 +187,11 @@ class _DebugDrawLineManager {
     lines.update(dt);
   }
 
-
+  @override
+  void finalize() {
+    _lineMesh.dispose();
+    _lineMeshInputLayout.dispose();
+  }
 }
 
 /** The debug draw manager manages a collection of debug primitives that are
@@ -215,7 +219,7 @@ class _DebugDrawLineManager {
  * - Lifetime.
  *
  */
-class DebugDrawManager {
+class DebugDrawManager extends Disposable {
   static const double TWO_PI = 2.0 * Math.PI;
 
   DepthState _depthState;
@@ -290,7 +294,7 @@ class DebugDrawManager {
     var direction = vector.normalized().scale(-size);
 
     lineManager.lines._addLine(origin, to);
-    
+
     var center = to.clone().add(direction);
     num s = size / Math.cos(45.0 / 2.0);
     num radius = Math.sqrt(s * s - size * size);
@@ -663,8 +667,8 @@ class DebugDrawManager {
   /// and [vertex3]. Filled with [color].
   ///
   /// Optional parameters: [duration] and [depthEnabled]
-  void addQuad(Vector3 vertex0, Vector3 vertex1, Vector3 vertex2, 
-  			   Vector3 vertex3, Vector4 color, {num duration: 0.0, 
+  void addQuad(Vector3 vertex0, Vector3 vertex1, Vector3 vertex2,
+  			   Vector3 vertex3, Vector4 color, {num duration: 0.0,
                bool depthEnabled: true}) {
     var lineManager = depthEnabled ? _depthEnabledLines : _depthDisabledLines;
     lineManager.lines.startLineObject(color.r, color.g, color.b, color.a,
@@ -779,6 +783,15 @@ class DebugDrawManager {
   void update(num seconds) {
     _depthEnabledLines.update(seconds);
     _depthDisabledLines.update(seconds);
+  }
+
+  @override
+  void finalize() {
+    _lineVertexShader.dispose();
+    _lineFragmentShader.dispose();
+    _lineShaderProgram.dispose();
+    _depthEnabledLines.dispose();
+    _depthDisabledLines.dispose();
   }
 }
 
