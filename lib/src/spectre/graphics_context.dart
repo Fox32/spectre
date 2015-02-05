@@ -615,10 +615,13 @@ class GraphicsContext {
     }
     SpectreTexture old = _textures[textureUnit];
     _setActiveTextureUnit(textureUnit);
-    if (_textures[textureUnit] != texture) {
-      // Clear all possible texture targets.
-      device.gl.bindTexture(WebGL.TEXTURE_2D, null);
-      device.gl.bindTexture(WebGL.TEXTURE_CUBE_MAP, null);
+    if (old != texture) {
+      // Clear all previous texture targets.
+      if (old != null && (texture == null ||
+          old._bindTarget != texture._bindTarget)) {
+        device.gl.bindTexture(old._bindTarget, null);
+      }
+
       if (texture != null) {
         device.gl.bindTexture(texture._bindTarget, texture._deviceTexture);
       }
